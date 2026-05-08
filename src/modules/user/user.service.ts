@@ -35,10 +35,20 @@ const userUpdate = async(name:string, email:string, age:number, phone:string, ad
     return result;
 }
 
+const userDelete = async(id:string)=>{
+    const result = await pool.query(
+      `DELETE FROM users WHERE id=$1`,
+      [id]
+    );
+    return result;
+}
+
+
 export const userServices ={
     createUser,
     getUser,
     getSingleUser,
     userUpdate,
+    userDelete,
     
 }
