@@ -25,23 +25,19 @@ app.get("/",logger, (req: Request, res: Response) => {
 
 // ================= USERS CRUD =================
 
+// user create
 app.use("/users",userRoutes);
-// Create User
-// app.post("/users", async (req: Request, res: Response) => {
-//   const { name, email, age, phone, address, hobby } = req.body;
 
+
+// Get All Users
+// app.get("/users", async (req: Request, res: Response) => {
 //   try {
-//     const result = await pool.query(
-//       `INSERT INTO users(name, email, age, phone, address, hobby)
-//        VALUES($1, $2, $3, $4, $5, $6)
-//        RETURNING *`,
-//       [name, email, age, phone, address, hobby]
-//     );
+//     const result = await pool.query(`SELECT * FROM users`);
 
-//     res.status(201).json({
+//     res.status(200).json({
 //       success: true,
-//       message: "User created successfully",
-//       data: result.rows[0],
+//       message: "Users retrieved successfully",
+//       data: result.rows,
 //     });
 //   } catch (err: any) {
 //     res.status(500).json({
@@ -50,24 +46,6 @@ app.use("/users",userRoutes);
 //     });
 //   }
 // });
-
-// Get All Users
-app.get("/users", async (req: Request, res: Response) => {
-  try {
-    const result = await pool.query(`SELECT * FROM users`);
-
-    res.status(200).json({
-      success: true,
-      message: "Users retrieved successfully",
-      data: result.rows,
-    });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
 
 // Get User By ID
 app.get("/users/:id", async (req: Request, res: Response) => {
