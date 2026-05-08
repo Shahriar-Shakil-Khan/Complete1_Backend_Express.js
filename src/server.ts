@@ -1,7 +1,8 @@
-import express, { NextFunction, Request, Response } from "express";
+import express, {  Request, Response } from "express";
 
 import config from "./config";
 import initDB, { pool } from "./config/db";
+import logger from "./middleware/logger";
 
 const app = express();
 const port = config.port;
@@ -16,7 +17,7 @@ initDB().catch((err) => {
   process.exit(1);
 });
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/",logger, (req: Request, res: Response) => {
   res.send("Hello Next Level Developers md. shahriar shakil!");
 });
 
