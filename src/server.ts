@@ -292,3 +292,46 @@ app.put("/works/:id", async (req: Request, res: Response) => {
   }
 });
 
+// Delete Todo
+app.delete("/works/:id", async (req: Request, res: Response) => {
+  try {
+    const result = await pool.query(
+      `DELETE FROM works WHERE id=$1`,
+      [req.params.id]
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "works not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "works deleted successfully",
+      data: null,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
+
+
+// ================= 404 =================
+app.use((req: Request, res: Response) => {
+  res.status(404).json({
+    success: false,
+    message: "Route not found",
+    path: req.path,
+  });
+});
+
+
+// ================= SERVER =================
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
