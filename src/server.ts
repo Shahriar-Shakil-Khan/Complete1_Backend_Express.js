@@ -3,6 +3,7 @@ import express, {  Request, Response } from "express";
 import config from "./config";
 import initDB, { pool } from "./config/db";
 import logger from "./middleware/logger";
+import { userRoutes } from "./modules/user/user.routes";
 
 const app = express();
 const port = config.port;
@@ -24,30 +25,31 @@ app.get("/",logger, (req: Request, res: Response) => {
 
 // ================= USERS CRUD =================
 
+app.use("/users",userRoutes);
 // Create User
-app.post("/users", async (req: Request, res: Response) => {
-  const { name, email, age, phone, address, hobby } = req.body;
+// app.post("/users", async (req: Request, res: Response) => {
+//   const { name, email, age, phone, address, hobby } = req.body;
 
-  try {
-    const result = await pool.query(
-      `INSERT INTO users(name, email, age, phone, address, hobby)
-       VALUES($1, $2, $3, $4, $5, $6)
-       RETURNING *`,
-      [name, email, age, phone, address, hobby]
-    );
+//   try {
+//     const result = await pool.query(
+//       `INSERT INTO users(name, email, age, phone, address, hobby)
+//        VALUES($1, $2, $3, $4, $5, $6)
+//        RETURNING *`,
+//       [name, email, age, phone, address, hobby]
+//     );
 
-    res.status(201).json({
-      success: true,
-      message: "User created successfully",
-      data: result.rows[0],
-    });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+//     res.status(201).json({
+//       success: true,
+//       message: "User created successfully",
+//       data: result.rows[0],
+//     });
+//   } catch (err: any) {
+//     res.status(500).json({
+//       success: false,
+//       message: err.message,
+//     });
+//   }
+// });
 
 // Get All Users
 app.get("/users", async (req: Request, res: Response) => {
