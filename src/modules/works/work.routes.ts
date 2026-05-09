@@ -4,4 +4,6 @@ const router = express.Router();
 
 router.post("/", workControllers.createWork );
 
+router.get("/", workControllers.getWork );
+
 export const workRoutes = router;

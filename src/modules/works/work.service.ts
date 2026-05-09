@@ -11,7 +11,12 @@ const workCreate = async(user_id:number, title:string, description:string, compl
 
 }
 
+const getWork =async()=>{
+    const result = await pool.query(`SELECT * FROM works`);
+    return result;
+}
 
 export const workServices = {
     workCreate,
+    getWork
 }

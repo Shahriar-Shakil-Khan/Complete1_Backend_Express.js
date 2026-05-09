@@ -34,23 +34,7 @@ app.use("/users",userRoutes);
 
 app.use("/works", workRoutes);
 
-// Get All Todos
-app.get("/works", async (req: Request, res: Response) => {
-  try {
-    const result = await pool.query(`SELECT * FROM works`);
 
-    res.status(200).json({
-      success: true,
-      message: "works retrieved successfully",
-      data: result.rows,
-    });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
 
 
 

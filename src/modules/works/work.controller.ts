@@ -21,6 +21,24 @@ const createWork = async (req: Request, res: Response) => {
   }
 }
 
+const getWork = async (req: Request, res: Response) => {
+  try {
+    const result = await workServices.getWork()
+
+    res.status(200).json({
+      success: true,
+      message: "works retrieved successfully",
+      data: result.rows,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+}
+
 export const workControllers ={
     createWork,
+    getWork,
 }
