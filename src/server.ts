@@ -28,8 +28,6 @@ app.get("/",logger, (req: Request, res: Response) => {
 
 app.use("/users",userRoutes);
 
-
-
 // ================= works CRUD =================
 
 app.use("/works", workRoutes);
@@ -39,32 +37,7 @@ app.use("/works", workRoutes);
 
 
 // Get works By ID
-app.get("/works/:id", async (req: Request, res: Response) => {
-  try {
-    const result = await pool.query(
-      `SELECT * FROM works WHERE id=$1`,
-      [req.params.id]
-    );
-
-    if (result.rows.length === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "works not found",
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      message: "works fetched successfully",
-      data: result.rows[0],
-    });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.get("/works/:id", );
 
 // Update Todo
 app.put("/works/:id", async (req: Request, res: Response) => {

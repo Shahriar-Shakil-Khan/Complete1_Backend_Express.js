@@ -6,4 +6,6 @@ router.post("/", workControllers.createWork );
 
 router.get("/", workControllers.getWork );
 
+router.get("/:id", workControllers.getSingleWork );
+
 export const workRoutes = router;

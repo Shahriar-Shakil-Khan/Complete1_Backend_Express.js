@@ -16,7 +16,17 @@ const getWork =async()=>{
     return result;
 }
 
+
+const getSingleWork =async(id:string)=>{
+    const result = await pool.query(
+      `SELECT * FROM works WHERE id=$1`,
+      [id]
+    );
+     return result;
+}
+
 export const workServices = {
     workCreate,
-    getWork
+    getWork,
+    getSingleWork
 }
