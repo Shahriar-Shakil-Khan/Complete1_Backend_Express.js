@@ -37,9 +37,19 @@ const updateWork = async(title:string, description:string, completed:boolean, du
     return result;
 }
 
+
+const deleteWork = async(id:string)=>{
+    const result = await pool.query(
+      `DELETE FROM works WHERE id=$1`,
+      [id]
+    );
+    return result;
+}
+
 export const workServices = {
     workCreate,
     getWork,
     getSingleWork,
-    updateWork
+    updateWork,
+    deleteWork,
 }

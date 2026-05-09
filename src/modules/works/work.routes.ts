@@ -10,4 +10,6 @@ router.get("/:id", workControllers.getSingleWork );
 
 router.put("/:id", workControllers.updateWork );
 
+router.delete("/:id", workControllers.deleteWork );
+
 export const workRoutes = router;
