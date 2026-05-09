@@ -4,6 +4,7 @@ import config from "./config";
 import initDB, { pool } from "./config/db";
 import logger from "./middleware/logger";
 import { userRoutes } from "./modules/user/user.routes";
+import { workRoutes } from "./modules/works/work.routes";
 
 const app = express();
 const port = config.port;
@@ -31,30 +32,7 @@ app.use("/users",userRoutes);
 
 // ================= works CRUD =================
 
-
-app.post("/works", async (req: Request, res: Response) => {
-  const { user_id, title, description, completed, due_date, hobby } = req.body;
-
-  try {
-    const result = await pool.query(
-      `INSERT INTO works(user_id, title, description, completed, due_date, hobby)
-       VALUES($1, $2, $3, $4, $5, $6)
-       RETURNING *`,
-      [user_id, title, description, completed, due_date, hobby]
-    );
-
-    res.status(201).json({
-      success: true,
-      message: "works created successfully",
-      data: result.rows[0],
-    });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.use("/works", workRoutes);
 
 // Get All Todos
 app.get("/works", async (req: Request, res: Response) => {
