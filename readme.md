@@ -1,21 +1,24 @@
-
 npm init -y
 
 npm install express --save
 
 npm install -D typescript
 
-npx tsc --init
+npx tsc --init ( omit and follow tsconfig.json of GitHub ={ https://github.com/Shahriar-Shakil-Khan/Express_Server/blob/main/tsconfig.json })
 
 npm i --save-dev @types/express
 
 npm i -D tsx (Go to Package.json file and in script you will add ("dev": "npx tsx watch ./src/server.ts"))
 
-npm run dev
-
-npm i pg
+npm i pg  ( database )
+ 
+npm i --save-dev @types/pg
 
 npm i dotenv
+
+npm i --save-dev @types/node , npx tsc --init 
+
+npm run dev
 
 for password go to  Bcrypt ( npm i bcryptjs ) and go to jwt token ( npm i jsonwebtoken,npm i --save-dev @types/jsonwebtoken )
 
