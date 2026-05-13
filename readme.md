@@ -4,7 +4,8 @@ npm install express --save
 
 npm install -D typescript
 
-npx tsc --init ( omit and follow tsconfig.json of GitHub ={ https://github.com/Shahriar-Shakil-Khan/Express_Server/blob/main/tsconfig.json })
+npx tsc --init ( omit and follow tsconfig.json of GitHub =
+{ https://github.com/Shahriar-Shakil-Khan/Express_Server/blob/main/tsconfig.json })
 
 npm i --save-dev @types/express
 
